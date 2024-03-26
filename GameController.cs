@@ -97,14 +97,23 @@ namespace Ejercicio2
                 bool validEnemyIndex = false;
                 int selectedEnemyIndex = 0;
 
+                Console.WriteLine("\nEs tu turno, selecciona un enemigo a atacar:");
+                DisplayEnemies(enemies);
+
                 while (!validEnemyIndex)
                 {
-                    Console.WriteLine("\nEs tu turno, selecciona un enemigo a atacar:");
-                    DisplayEnemies(enemies);
-
                     selectedEnemyIndex = int.Parse(Console.ReadLine());
 
-                    if (selectedEnemyIndex > 0 && selectedEnemyIndex <= enemies.Count) validEnemyIndex = true;
+                    if (selectedEnemyIndex > 0 && selectedEnemyIndex <= enemies.Count)
+                    {
+                        if (enemies[selectedEnemyIndex -1].IsAlive()) validEnemyIndex = true;
+                        else
+                        {
+                            Console.WriteLine("El enemigo seleccionado esta muerto, selecciona otro enemigo:");
+                            DisplayEnemies(enemies);
+                        }
+                        
+                    }
                     else
                     {
                         Console.WriteLine("Enemigo seleccionado no valido, selecciona otro enemigo:");
@@ -224,17 +233,9 @@ namespace Ejercicio2
                 
                 if(enemyIndex == indexToAttack)
                 {
-                    if (!enemy.IsAlive())
-                    {
-                        Console.WriteLine("El enemigo esta muerto, selecciona otro enemigo");
-                        return false;
-                    }
-                    else
-                    {
-                        enemy.TakeDamage(playerDamage);
-                        Console.WriteLine($"\nHas atacado al enemigo {indexToAttack} con {playerDamage} puntos de daño");
-                        return true;
-                    }
+                    enemy.TakeDamage(playerDamage);
+                    Console.WriteLine($"\nHas atacado al enemigo {indexToAttack} con {playerDamage} puntos de daño");
+                    return true;
                 }
 
             }
