@@ -1,6 +1,6 @@
 ﻿using System;
 
-public abstract class Entity
+public abstract class Entity: IDamageable, ICanAttack, IHasHealth
 {
 	public int health;
 	public int damage;
