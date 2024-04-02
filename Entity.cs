@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Entity
+public abstract class Entity
 {
 	public int health;
 	public int damage;
@@ -10,7 +10,6 @@ public class Entity
 		this.health = health;
 		this.damage = damage;
 	}
-
 	public void TakeDamage(int damage)
 	{
 		health = damage > health ? 0 : health - damage;

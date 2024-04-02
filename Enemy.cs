@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Enemy: Entity
+public abstract class Enemy: Entity
 {
 	public Enemy(int health, int damage) : base(health, damage) { }
 
